@@ -16,9 +16,9 @@
 <script>
     function updateClock() {
         const now = new Date();
-        const hours = now.getHours().toString();
-        const minutes = now.getMinutes().toString();
-        const seconds = now.getSeconds().toString();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
         const timeString = `${hours}:${minutes}:${seconds}`;
 
         document.getElementById('clock').textContent = timeString;
@@ -37,7 +37,7 @@
         const timeUntilAlarm = alarmDate - now;
         if (timeUntilAlarm > 0) {
             setTimeout(() => {
-                alert('Alarm! It\'s time!');
+                alert('Alarm time!');
             }, timeUntilAlarm);
         } else {
             alert('Invalid alarm time');
@@ -45,7 +45,7 @@
     }
 
     
-    updateClock();
+    
     setInterval(updateClock, 1000);
 </script>
 
