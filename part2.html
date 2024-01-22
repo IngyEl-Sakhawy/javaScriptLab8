@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <title>Digital Watch</title>
+</head>
+<body>
+
+<div id="clock"></div>
+<br>
+<button onclick="setAlarm()">Set Alarm</button>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+        const hours = now.getHours().toString();
+        const minutes = now.getMinutes().toString();
+        const seconds = now.getSeconds().toString();
+        const timeString = `${hours}:${minutes}:${seconds}`;
+
+        document.getElementById('clock').textContent = timeString;
+    }
+
+    function setAlarm() {
+        const alarmTime = prompt('Set alarm time (HH:MM):', '12:00');
+        if (alarmTime === null) {
+            return;
+        }
+
+        const [alarmHours, alarmMinutes] = alarmTime.split(':');
+        const now = new Date();
+        const alarmDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), alarmHours, alarmMinutes);
+
+        const timeUntilAlarm = alarmDate - now;
+        if (timeUntilAlarm > 0) {
+            setTimeout(() => {
+                alert('Alarm! It\'s time!');
+            }, timeUntilAlarm);
+        } else {
+            alert('Invalid alarm time');
+        }
+    }
+
+    
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
