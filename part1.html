@@ -1,68 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
+        .slider-container {
+            position: relative;
+            width: 50%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #333;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<div >
+<div class="slider-container">
 
-<div class="mySlides ">
-  
-  <img src="image1.jpg" style="width:50%">
- 
-</div>
+    <div class="mySlides">
+        <img src="image1.jpg" alt="Image 1">
+    </div>
 
-<div class="mySlides ">
-  
-  <img src="image2.jpg" style="width:50%">
-  
-</div>
+    <div class="mySlides">
+        <img src="image2.jpg" alt="Image 2">
+    </div>
 
-<div class="mySlides ">
-  
-  <img src="image3.jpg" style="width:50%">
-  
-</div>
+    <div class="mySlides">
+        <img src="image3.jpg" alt="Image 3">
+    </div>
 
-<a class="prev" onclick="changeSlide(-1)">❮</a>
-<a class="next" onclick="changeSlide(1)">❯</a>
+    <a class="prev" onclick="changeSlide(-1)">❮</a>
+    <a class="next" onclick="changeSlide(1)">❯</a>
 
 </div>
-
 
 <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
 
-let slideIndex = 1;
-showSlides(slideIndex);
+    function changeSlide(n) {
+        showSlides(slideIndex += n);
+    }
 
-function changeSlide(n) {
-  showSlides(slideIndex += n);
-}
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
 
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  
-  if (n > slides.length) {
-    slideIndex = 1
-}    
-  if (n < 1) {
-    slideIndex = slides.length
-}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
- 
-  slides[slideIndex-1].style.display = "block";  
-  
-}
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+    }
 </script>
 
 </body>
-</html> 
+</html>
